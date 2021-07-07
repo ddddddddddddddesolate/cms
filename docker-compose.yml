@@ -1,20 +1,18 @@
 version: '3'
 
-volumes:
-  postgres_data: {}
 services:
   app:
     build:
       context: .
       dockerfile: ./docker/app/Dockerfile
+    volumes:
+      - .:/var/www/app
     depends_on:
       - database
   database:
-    image: postgres
+    image: postgres:latest
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_HOST_AUTH_METHOD: trust
   web:
     build:
       context: .
@@ -23,3 +21,5 @@ services:
       - app
     ports:
       - 80:80
+volumes:
+  postgres_data:

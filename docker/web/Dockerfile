@@ -2,7 +2,7 @@ FROM nginx:latest
 
 RUN apt-get update -qq && apt-get -y install apache2-utils
 
-ENV RAILS_ROOT /var/www/cms
+ENV RAILS_ROOT /var/www/app
 
 WORKDIR $RAILS_ROOT
 
