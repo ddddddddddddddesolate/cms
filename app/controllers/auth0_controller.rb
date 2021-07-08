@@ -1,9 +1,7 @@
 class Auth0Controller < ApplicationController
   def callback
     auth_info = request.env["omniauth.auth"]
-    session[:userinfo] = auth_info["extra"]["raw_info"]
-
-    redirect_to "/"
+    cookies[:userinfo] = auth_info["extra"]["raw_info"]
   end
 
   def failure
@@ -17,15 +15,15 @@ class Auth0Controller < ApplicationController
 
   private
 
-  AUTH0_CONFIG = Rails.application.config_for(:auth0)
+  AUTH0_CONFIG = Rails.application.credentials.auth0
 
   def logout_url
     request_params = {
-      returnTo: "/",
-      client_id: AUTH0_CONFIG["auth0_client_id"],
+      returnTo: root_url,
+      client_id: AUTH0_CONFIG[:client_id],
     }
 
-    URI::HTTPS.build(host: AUTH0_CONFIG["auth0_domain"], path: "/v2/logout", query: to_query(request_params)).to_s
+    URI::HTTPS.build(host: AUTH0_CONFIG[:domain], path: "/v2/logout", query: to_query(request_params)).to_s
   end
 
   def to_query(hash)
