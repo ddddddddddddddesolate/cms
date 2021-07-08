@@ -11,9 +11,7 @@ ENV RACK_ENV='development'
 
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
-RUN bundle install --jobs 20 --retry 5 --without production test 
-
-COPY . .
+RUN bundle install --jobs 20 --retry 5 --without production test
 
 EXPOSE 3000
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
