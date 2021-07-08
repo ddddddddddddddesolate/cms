@@ -37,6 +37,8 @@ module Cms
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    config.autoload_paths << Rails.root.join("lib")
+
     config.middleware.insert_after ActiveRecord::Migration::CheckPending, ActionDispatch::Cookies
     config.middleware.insert_after ActionDispatch::Cookies, ActionDispatch::Session::CookieStore
   end
