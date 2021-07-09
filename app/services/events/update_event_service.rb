@@ -12,7 +12,7 @@ module Events
     end
 
     def call
-      event = current_user.events.find_by!(id: event_params[:id])
+      event = current_user.events.find_by!(event_params.extract!(:id))
 
       OpenStruct.new(success: event.update(event_params), errors: event.errors, event: event)
     end
