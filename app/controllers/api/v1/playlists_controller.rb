@@ -19,10 +19,24 @@ module Api
                }, status: :ok
       end
 
+      def create
+        result = Playlists::CreatePlaylistService.call(playlist_params)
+
+        if result.success
+          render json: {
+                   data: result.playlist,
+                 }, status: :ok
+        else
+          render json: {
+                   errors: result.errors,
+                 }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def playlist_params
-        params.permit(:id)
+        params.permit(:id, :name)
       end
     end
   end
