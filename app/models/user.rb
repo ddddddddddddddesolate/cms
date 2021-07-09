@@ -9,5 +9,5 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   has_many :events, dependent: :delete_all
-  has_many :displays, through: :events
+  has_many :displays, through: :events, dependent: :delete_all
 end
