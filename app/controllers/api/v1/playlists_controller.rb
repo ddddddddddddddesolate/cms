@@ -10,6 +10,20 @@ module Api
                  data: result.playlists,
                }, status: :ok
       end
+
+      def show
+        result = Playlists::ShowPlaylistService.call(playlist_params)
+
+        render json: {
+                 data: result.playlist,
+               }, status: :ok
+      end
+
+      private
+
+      def playlist_params
+        params.permit(:id)
+      end
     end
   end
 end
