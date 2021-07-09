@@ -29,7 +29,7 @@ module Api
         else
           render json: {
                    errors: result.errors,
-                 }, status: :ok
+                 }, status: :unprocessable_entity
         end
       end
 
