@@ -33,6 +33,20 @@ module Api
         end
       end
 
+      def update
+        result = Events::UpdateEventService.call(current_user, event_params)
+
+        if result.success
+          render json: {
+                   data: result.event,
+                 }, status: :ok
+        else
+          render json: {
+                   errors: result.errors,
+                 }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def event_params
