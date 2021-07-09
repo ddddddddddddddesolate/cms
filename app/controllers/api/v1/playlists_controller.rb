@@ -4,7 +4,7 @@ module Api
   module V1
     class PlaylistsController < AuthenticatedController
       def index
-        result = Playlists::ShowPlaylistsService.call(current_user)
+        result = Playlists::ShowPlaylistsService.call
 
         render json: {
                  data: result.playlists,

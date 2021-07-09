@@ -4,14 +4,8 @@ module Playlists
   class ShowPlaylistsService
     include Callable
 
-    attr_reader :current_user
-
-    def initialize(current_user)
-      @current_user = current_user
-    end
-
     def call
-      OpenStruct.new(playlists: current_user.playlists)
+      OpenStruct.new(playlists: Playlist.all)
     end
   end
 end
