@@ -33,6 +33,20 @@ module Api
         end
       end
 
+      def update
+        result = Displays::UpdateDisplayService.call(current_user, display_params)
+
+        if result.success
+          render json: {
+                   data: result.display,
+                 }, status: :ok
+        else
+          render json: {
+                   errors: result.errors,
+                 }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def display_params
