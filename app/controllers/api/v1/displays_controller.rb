@@ -11,6 +11,14 @@ module Api
                }, status: :ok
       end
 
+      def show
+        result = Displays::ShowDisplayService.call(current_user, display_params)
+
+        render json: {
+                 data: result.display,
+               }, status: :ok
+      end
+
       private
 
       def display_params
