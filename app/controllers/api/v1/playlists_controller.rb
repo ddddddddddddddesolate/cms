@@ -62,7 +62,7 @@ module Api
       private
 
       def playlist_params
-        params.permit(:id, :name)
+        params.permit(:id, :name, :duration)
       end
     end
   end
