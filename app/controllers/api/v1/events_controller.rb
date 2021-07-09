@@ -47,6 +47,18 @@ module Api
         end
       end
 
+      def destroy
+        result = Events::DeleteEventService.call(current_user, event_params)
+
+        if result.success
+          render status: :no_content
+        else
+          render json: {
+                   errors: result.errors,
+                 }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def event_params
