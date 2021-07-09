@@ -12,7 +12,7 @@ module Events
     end
 
     def call
-      event = current_user.events.find_by!(event_params.extract!(:id))
+      event = current_user.events.find_by!(event_params)
       event.destroy
 
       OpenStruct.new(success: event.destroyed?, errors: event.errors)
