@@ -10,5 +10,4 @@ class User < ActiveRecord::Base
 
   has_many :events, dependent: :delete_all
   has_many :displays, through: :events, dependent: :delete_all
-  has_many :playlists, through: :displays, dependent: :delete_all
 end
