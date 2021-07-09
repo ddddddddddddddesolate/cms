@@ -47,6 +47,18 @@ module Api
         end
       end
 
+      def destroy
+        result = Displays::DeleteDisplayService.call(current_user, display_params)
+
+        if result.success
+          render status: :no_content
+        else
+          render json: {
+                   errors: result.errors,
+                 }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def display_params
