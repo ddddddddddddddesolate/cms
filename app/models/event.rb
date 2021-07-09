@@ -2,6 +2,7 @@
 
 class Event < ApplicationRecord
   belongs_to :user
+  has_many :displays
 
   validates :user, presence: true
   validates :name, presence: true, length: { maximum: 255 }
