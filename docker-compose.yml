@@ -5,12 +5,14 @@ services:
     build:
       context: .
       dockerfile: ./docker/app/Dockerfile
+    restart: always
     volumes:
       - .:/var/www/app
     depends_on:
       - database
   database:
     image: postgres:latest
+    restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data
   web:
