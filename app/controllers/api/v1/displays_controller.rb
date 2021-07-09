@@ -19,6 +19,20 @@ module Api
                }, status: :ok
       end
 
+      def create
+        result = Displays::CreateDisplayService.call(current_user, display_params)
+
+        if result.success
+          render json: {
+                   data: result.display,
+                 }, status: :ok
+        else
+          render json: {
+                   errors: result.errors,
+                 }, status: :ok
+        end
+      end
+
       private
 
       def display_params
