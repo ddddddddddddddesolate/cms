@@ -62,7 +62,7 @@ module Api
       private
 
       def display_params
-        params.permit(:id, :event_id, :name)
+        params.permit(:id, :name, :event_id, :playlist_id)
       end
     end
   end
