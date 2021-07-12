@@ -19,6 +19,20 @@ module Api
                }, status: :ok
       end
 
+      def create
+        result = Slides::AddSlideService.call(slide_params)
+
+        if result.success
+          render json: {
+                   data: result.slide,
+                 }, status: :ok
+        else
+          render json: {
+                   errors: result.errors,
+                 }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def slide_params
