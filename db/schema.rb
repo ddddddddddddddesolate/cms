@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_12_062939) do
+ActiveRecord::Schema.define(version: 2021_07_12_084053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,16 @@ ActiveRecord::Schema.define(version: 2021_07_12_062939) do
     t.bigint "duration", default: 3600
   end
 
+  create_table "slides", force: :cascade do |t|
+    t.bigint "playlist_id", null: false
+    t.bigint "content_id", null: false
+    t.bigint "weight", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["content_id"], name: "index_slides_on_content_id"
+    t.index ["playlist_id"], name: "index_slides_on_playlist_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
@@ -74,4 +84,6 @@ ActiveRecord::Schema.define(version: 2021_07_12_062939) do
   add_foreign_key "displays", "events"
   add_foreign_key "displays", "playlists"
   add_foreign_key "events", "users"
+  add_foreign_key "slides", "contents"
+  add_foreign_key "slides", "playlists"
 end
