@@ -7,7 +7,7 @@ module Api
         result = Events::ShowEventsService.call(current_user)
 
         render json: {
-                 data: result.events,
+                 data: ActiveModelSerializers::SerializableResource.new(result.events, each_serializer: EventSerializer),
                }, status: :ok
       end
 
@@ -15,7 +15,7 @@ module Api
         result = Events::ShowEventService.call(current_user, event_params)
 
         render json: {
-                 data: result.event,
+                 data: ActiveModelSerializers::SerializableResource.new(result.event, serializer: EventSerializer),
                }, status: :ok
       end
 
@@ -24,7 +24,7 @@ module Api
 
         if result.success
           render json: {
-                   data: result.event,
+                   data: ActiveModelSerializers::SerializableResource.new(result.event, serializer: EventSerializer),
                  }, status: :ok
         else
           render json: {
@@ -38,7 +38,7 @@ module Api
 
         if result.success
           render json: {
-                   data: result.event,
+                   data: ActiveModelSerializers::SerializableResource.new(result.event, serializer: EventSerializer),
                  }, status: :ok
         else
           render json: {
