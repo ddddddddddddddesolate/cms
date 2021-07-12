@@ -11,6 +11,14 @@ module Api
                }, status: :ok
       end
 
+      def show
+        result = Contents::ShowContentService.call(content_params)
+
+        render json: {
+                 data: result.content,
+               }, status: :ok
+      end
+
       def create
         result = Contents::CreateContentService.call(content_params)
 
@@ -28,7 +36,7 @@ module Api
       private
 
       def content_params
-        params.permit(:content)
+        params.permit(:id, :content)
       end
     end
   end
