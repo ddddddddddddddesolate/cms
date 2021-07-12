@@ -7,7 +7,7 @@ module Api
         result = Displays::ShowDisplaysService.call(current_user, display_params)
 
         render json: {
-                 data: result.displays,
+                 data: ActiveModelSerializers::SerializableResource.new(result.displays, each_serializer: DisplaySerializer),
                }, status: :ok
       end
 
@@ -15,7 +15,7 @@ module Api
         result = Displays::ShowDisplayService.call(current_user, display_params)
 
         render json: {
-                 data: result.display,
+                 data: ActiveModelSerializers::SerializableResource.new(result.display, serializer: DisplaySerializer),
                }, status: :ok
       end
 
@@ -24,7 +24,7 @@ module Api
 
         if result.success
           render json: {
-                   data: result.display,
+                   data: ActiveModelSerializers::SerializableResource.new(result.display, serializer: DisplaySerializer),
                  }, status: :ok
         else
           render json: {
@@ -38,7 +38,7 @@ module Api
 
         if result.success
           render json: {
-                   data: result.display,
+                   data: ActiveModelSerializers::SerializableResource.new(result.display, serializer: DisplaySerializer),
                  }, status: :ok
         else
           render json: {
