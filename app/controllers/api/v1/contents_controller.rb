@@ -33,6 +33,20 @@ module Api
         end
       end
 
+      def update
+        result = Contents::UpdateContentService.call(content_params)
+
+        if result.success
+          render json: {
+                   data: result.content,
+                 }, status: :ok
+        else
+          render json: {
+                   errors: result.errors,
+                 }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def content_params
