@@ -38,5 +38,6 @@ module Cms
     config.api_only = true
 
     config.autoload_paths << Rails.root.join("lib")
+    config.autoload_paths << Rails.root.join("app/uploaders")
   end
 end
