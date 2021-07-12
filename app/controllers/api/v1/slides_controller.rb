@@ -11,10 +11,18 @@ module Api
                }, status: :ok
       end
 
+      def show
+        result = Slides::ShowSlideService.call(slide_params)
+
+        render json: {
+                 data: result.slide,
+               }, status: :ok
+      end
+
       private
 
       def slide_params
-        params.permit(:playlist_id, :content_id)
+        params.permit(:id, :playlist_id, :content_id)
       end
     end
   end
