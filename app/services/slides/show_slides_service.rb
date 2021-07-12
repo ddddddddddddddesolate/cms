@@ -11,11 +11,7 @@ module Slides
     end
 
     def call
-      slides = if slide_params[:playlist_id]
-          Playlist.find_by!(id: slide_params[:playlist_id]).slides
-        else
-          Content.find_by!(id: slide_params[:content_id]).slides
-        end
+      slides = Slide.where(slide_params)
 
       OpenStruct.new(slides: slides)
     end
