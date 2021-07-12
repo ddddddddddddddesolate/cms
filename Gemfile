@@ -19,6 +19,9 @@ gem "puma", "~> 5.0"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.4", require: false
 
+gem "carrierwave"
+gem "carrierwave-aws"
+gem "aws-sdk-rails"
 gem "devise"
 gem "devise_token_auth"
 gem "pundit"
