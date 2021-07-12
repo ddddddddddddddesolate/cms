@@ -7,7 +7,7 @@ module Api
         result = Slides::ShowSlidesService.call(slide_params)
 
         render json: {
-                 data: result.slides,
+                 data: ActiveModelSerializers::SerializableResource.new(result.slides, each_serializer: SlideSerializer),
                }, status: :ok
       end
 
@@ -15,7 +15,7 @@ module Api
         result = Slides::ShowSlideService.call(slide_params)
 
         render json: {
-                 data: result.slide,
+                 data: ActiveModelSerializers::SerializableResource.new(result.slide, serializer: SlideSerializer),
                }, status: :ok
       end
 
@@ -24,7 +24,7 @@ module Api
 
         if result.success
           render json: {
-                   data: result.slide,
+                   data: ActiveModelSerializers::SerializableResource.new(result.slide, serializer: SlideSerializer),
                  }, status: :ok
         else
           render json: {
@@ -38,7 +38,7 @@ module Api
 
         if result.success
           render json: {
-                   data: result.slide,
+                   data: ActiveModelSerializers::SerializableResource.new(result.slide, serializer: SlideSerializer),
                  }, status: :ok
         else
           render json: {
