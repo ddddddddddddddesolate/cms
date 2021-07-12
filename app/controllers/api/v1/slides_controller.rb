@@ -36,7 +36,7 @@ module Api
       private
 
       def slide_params
-        params.permit(:id, :playlist_id, :content_id)
+        params.permit(:id, :playlist_id, :content_id, :weight)
       end
     end
   end
