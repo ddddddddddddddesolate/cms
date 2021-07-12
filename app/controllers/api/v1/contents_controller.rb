@@ -3,6 +3,14 @@
 module Api
   module V1
     class ContentsController < AuthenticatedController
+      def index
+        result = Contents::ShowContentsService.call
+
+        render json: {
+                 data: result.contents,
+               }, status: :ok
+      end
+
       def create
         result = Contents::CreateContentService.call(content_params)
 
