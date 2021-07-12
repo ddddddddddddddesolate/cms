@@ -47,6 +47,18 @@ module Api
         end
       end
 
+      def destroy
+        result = Contents::DeleteContentService.call(content_params)
+
+        if result.success
+          render status: :no_content
+        else
+          render json: {
+                   errors: result.errors,
+                 }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def content_params
