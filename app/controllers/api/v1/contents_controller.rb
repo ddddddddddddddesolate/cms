@@ -7,7 +7,7 @@ module Api
         result = Contents::ShowContentsService.call
 
         render json: {
-                 data: result.contents,
+                 data: ActiveModelSerializers::SerializableResource.new(result.contents, each_serializer: ContentSerializer),
                }, status: :ok
       end
 
@@ -15,7 +15,7 @@ module Api
         result = Contents::ShowContentService.call(content_params)
 
         render json: {
-                 data: result.content,
+                 data: ActiveModelSerializers::SerializableResource.new(result.content, serializer: ContentSerializer),
                }, status: :ok
       end
 
@@ -24,7 +24,7 @@ module Api
 
         if result.success
           render json: {
-                   data: result.content,
+                   data: ActiveModelSerializers::SerializableResource.new(result.content, serializer: ContentSerializer),
                  }, status: :ok
         else
           render json: {
@@ -38,7 +38,7 @@ module Api
 
         if result.success
           render json: {
-                   data: result.content,
+                   data: ActiveModelSerializers::SerializableResource.new(result.content, serializer: ContentSerializer),
                  }, status: :ok
         else
           render json: {
