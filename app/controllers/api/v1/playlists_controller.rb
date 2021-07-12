@@ -7,7 +7,7 @@ module Api
         result = Playlists::ShowPlaylistsService.call
 
         render json: {
-                 data: result.playlists,
+                 data: ActiveModelSerializers::SerializableResource.new(result.playlists, each_serializer: PlaylistSerializer),
                }, status: :ok
       end
 
@@ -15,7 +15,7 @@ module Api
         result = Playlists::ShowPlaylistService.call(playlist_params)
 
         render json: {
-                 data: result.playlist,
+                 data: ActiveModelSerializers::SerializableResource.new(result.playlist, serializer: PlaylistSerializer),
                }, status: :ok
       end
 
@@ -24,7 +24,7 @@ module Api
 
         if result.success
           render json: {
-                   data: result.playlist,
+                   data: ActiveModelSerializers::SerializableResource.new(result.playlist, serializer: PlaylistSerializer),
                  }, status: :ok
         else
           render json: {
@@ -38,7 +38,7 @@ module Api
 
         if result.success
           render json: {
-                   data: result.playlist,
+                   data: ActiveModelSerializers::SerializableResource.new(result.playlist, serializer: PlaylistSerializer),
                  }, status: :ok
         else
           render json: {
