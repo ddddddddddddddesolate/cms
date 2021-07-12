@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class ContentsController < ApplicationController
+    class ContentsController < AuthenticatedController
       def create
         result = Contents::CreateContentService.call(content_params)
 
