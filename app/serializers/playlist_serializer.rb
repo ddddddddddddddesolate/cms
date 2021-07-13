@@ -3,5 +3,5 @@
 class PlaylistSerializer < ActiveModel::Serializer
   attributes :id, :name, :duration
 
-  has_many :contents
+  has_many :slides
 end

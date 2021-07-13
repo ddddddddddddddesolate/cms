@@ -1,9 +1,5 @@
 class DisplaySerializer < ActiveModel::Serializer
-  attributes :id, :name, :eventId
+  attributes :id, :name
 
   belongs_to :playlist
-
-  def eventId
-    object.event_id
-  end
 end
