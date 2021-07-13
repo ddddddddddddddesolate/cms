@@ -7,5 +7,7 @@ class Playlist < ApplicationRecord
   has_many :slides, dependent: :destroy
   has_many :contents, through: :slides
 
+  belongs_to :user
+
   validates :name, presence: true, length: { maximum: 255 }
 end
