@@ -48,7 +48,7 @@ module Api
       end
 
       def destroy
-        result = Contents::DeleteContentService.call(content_params)
+        result = Contents::DeleteContentService.call(current_user, content_params)
 
         if result.success
           render status: :no_content
