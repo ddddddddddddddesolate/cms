@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module Slides
-  class DeleteSlideService
-    include Callable
-
+  class DeleteSlideService < BaseService
     attr_reader :slide_params
 
     def initialize(slide_params)

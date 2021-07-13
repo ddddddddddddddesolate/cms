@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module Contents
-  class DeleteContentService
-    include Callable
-
+  class DeleteContentService < BaseService
     attr_reader :content_params
 
     def initialize(content_params)

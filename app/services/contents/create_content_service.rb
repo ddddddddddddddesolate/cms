@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module Contents
-  class CreateContentService
-    include Callable
-
+  class CreateContentService < BaseService
     attr_reader :content_params
 
     def initialize(content_params)

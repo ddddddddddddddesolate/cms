@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module Playlists
-  class DeletePlaylistService
-    include Callable
-
+  class DeletePlaylistService < BaseService
     attr_reader :playlist_params
 
     def initialize(playlist_params)

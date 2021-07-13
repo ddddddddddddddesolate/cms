@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module Events
-  class DeleteEventService
-    include Callable
-
+  class DeleteEventService < BaseService
     attr_reader :current_user, :event_params
 
     def initialize(current_user, event_params)

@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module Events
-  class CreateEventService
-    include Callable
-
+  class CreateEventService < BaseService
     attr_reader :current_user, :event_params
 
     def initialize(current_user, event_params)

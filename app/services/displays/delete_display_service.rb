@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module Displays
-  class DeleteDisplayService
-    include Callable
-
+  class DeleteDisplayService < BaseService
     attr_reader :current_user, :display_params
 
     def initialize(current_user, display_params)

@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module Slides
-  class ShowSlideService
-    include Callable
-
+  class ShowSlideService < BaseService
     attr_reader :slide_params
 
     def initialize(slide_params)

@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module Displays
-  class ShowDisplayService
-    include Callable
-
+  class ShowDisplayService < BaseService
     attr_reader :current_user, :display_params
 
     def initialize(current_user, display_params)

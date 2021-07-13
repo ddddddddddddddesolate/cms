@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module Playlists
-  class ShowPlaylistService
-    include Callable
-
+  class ShowPlaylistService < BaseService
     attr_reader :playlist_params
 
     def initialize(playlist_params)
