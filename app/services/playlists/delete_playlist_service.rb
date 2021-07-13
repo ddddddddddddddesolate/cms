@@ -2,15 +2,16 @@
 
 module Playlists
   class DeletePlaylistService < BaseService
-    attr_reader :current_user, :playlist_params
+    attr_reader :current_user, :id
 
-    def initialize(current_user, playlist_params)
+    def initialize(current_user, id)
       @current_user = current_user
-      @playlist_params = playlist_params
+      @id = id
     end
 
     def call
-      playlist = current_user.playlists.find_by!(playlist_params)
+      playlist = Playlist.find(ud)
+      authorize playlist, :destroy?
 
       playlist.destroy
 

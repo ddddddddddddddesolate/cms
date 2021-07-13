@@ -9,7 +9,7 @@ module Playlists
     end
 
     def call
-      OpenStruct.new(playlists: current_user.playlists)
+      OpenStruct.new(playlists: policy_scope(Playlist))
     end
   end
 end

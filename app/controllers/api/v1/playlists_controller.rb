@@ -12,7 +12,7 @@ module Api
       end
 
       def show
-        result = Playlists::ShowPlaylistService.call(current_user, playlist_params)
+        result = Playlists::ShowPlaylistService.call(current_user, params[:id])
 
         render json: {
                  data: ActiveModelSerializers::SerializableResource.new(result.playlist, serializer: PlaylistSerializer),
@@ -34,7 +34,7 @@ module Api
       end
 
       def update
-        result = Playlists::UpdatePlaylistService.call(current_user, playlist_params)
+        result = Playlists::UpdatePlaylistService.call(current_user, params[:id], playlist_params)
 
         if result.success
           render json: {
@@ -48,7 +48,7 @@ module Api
       end
 
       def destroy
-        result = Playlists::DeletePlaylistService.call(current_user, playlist_params)
+        result = Playlists::DeletePlaylistService.call(current_user, params[:id])
 
         if result.success
           render status: :no_content
@@ -62,7 +62,7 @@ module Api
       private
 
       def playlist_params
-        params.permit(:id, :name, :duration)
+        params.permit(:name, :duration)
       end
     end
   end
