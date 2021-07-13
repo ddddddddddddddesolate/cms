@@ -8,16 +8,8 @@ class EventPolicy < ApplicationPolicy
     @event = event
   end
 
-  def index?
-    true
-  end
-
   def show?
     event.user == user
-  end
-
-  def create?
-    true
   end
 
   def update?
@@ -34,7 +26,7 @@ class EventPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      scope.where(user_id: user.id)
+      scope.where(user: user)
     end
   end
 end
