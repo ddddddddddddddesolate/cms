@@ -2,8 +2,8 @@
 
 class Event < ApplicationRecord
   belongs_to :user
-  has_many :displays, dependent: :delete_all
-  has_many :playlists, through: :displays, dependent: :delete_all
+  has_many :displays, dependent: :destroy
+  has_many :playlists, through: :displays, dependent: :destroy
 
   validates :user, presence: true
   validates :name, presence: true, length: { maximum: 255 }
