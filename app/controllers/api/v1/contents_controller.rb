@@ -12,7 +12,7 @@ module Api
       end
 
       def show
-        result = Contents::ShowContentService.call(content_params)
+        result = Contents::ShowContentService.call(current_user, content_params)
 
         render json: {
                  data: ActiveModelSerializers::SerializableResource.new(result.content, serializer: ContentSerializer),
