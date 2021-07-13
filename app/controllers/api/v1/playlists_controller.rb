@@ -12,7 +12,7 @@ module Api
       end
 
       def show
-        result = Playlists::ShowPlaylistService.call(playlist_params)
+        result = Playlists::ShowPlaylistService.call(current_user, playlist_params)
 
         render json: {
                  data: ActiveModelSerializers::SerializableResource.new(result.playlist, serializer: PlaylistSerializer),

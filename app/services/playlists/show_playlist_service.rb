@@ -2,14 +2,15 @@
 
 module Playlists
   class ShowPlaylistService < BaseService
-    attr_reader :playlist_params
+    attr_reader :current_user, :playlist_params
 
-    def initialize(playlist_params)
+    def initialize(current_user, playlist_params)
+      @current_user = current_user
       @playlist_params = playlist_params
     end
 
     def call
-      playlist = Playlist.find_by!(playlist_params)
+      playlist = current_user.playlists.find_by!(playlist_params)
 
       OpenStruct.new(playlist: playlist)
     end
