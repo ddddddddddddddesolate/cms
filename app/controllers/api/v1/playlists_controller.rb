@@ -20,7 +20,7 @@ module Api
       end
 
       def create
-        result = Playlists::CreatePlaylistService.call(playlist_params)
+        result = Playlists::CreatePlaylistService.call(current_user, playlist_params)
 
         if result.success
           render json: {
