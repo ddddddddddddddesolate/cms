@@ -34,7 +34,7 @@ module Api
       end
 
       def update
-        result = Contents::UpdateContentService.call(content_params)
+        result = Contents::UpdateContentService.call(current_user, content_params)
 
         if result.success
           render json: {
