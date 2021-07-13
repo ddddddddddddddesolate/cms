@@ -4,7 +4,7 @@ module Api
   module V1
     class PlaylistsController < AuthenticatedController
       def index
-        result = Playlists::ShowPlaylistsService.call
+        result = Playlists::ShowPlaylistsService.call(current_user)
 
         render json: {
                  data: ActiveModelSerializers::SerializableResource.new(result.playlists, each_serializer: PlaylistSerializer),
