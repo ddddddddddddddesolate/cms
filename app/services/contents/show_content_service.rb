@@ -2,15 +2,16 @@
 
 module Contents
   class ShowContentService < BaseService
-    attr_reader :current_user, :content_params
+    attr_reader :current_user, :id
 
-    def initialize(current_user, content_params)
+    def initialize(current_user, id)
       @current_user = current_user
-      @content_params = content_params
+      @id = id
     end
 
     def call
-      content = current_user.contents.find_by!(content_params)
+      content = Content.find(id)
+      authorize content, :show?
 
       OpenStruct.new(content: content)
     end

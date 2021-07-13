@@ -12,7 +12,7 @@ module Api
       end
 
       def show
-        result = Contents::ShowContentService.call(current_user, content_params)
+        result = Contents::ShowContentService.call(current_user, params[:id])
 
         render json: {
                  data: ActiveModelSerializers::SerializableResource.new(result.content, serializer: ContentSerializer),
@@ -34,7 +34,7 @@ module Api
       end
 
       def update
-        result = Contents::UpdateContentService.call(current_user, content_params)
+        result = Contents::UpdateContentService.call(current_user, params[:id], content_params)
 
         if result.success
           render json: {
@@ -48,7 +48,7 @@ module Api
       end
 
       def destroy
-        result = Contents::DeleteContentService.call(current_user, content_params)
+        result = Contents::DeleteContentService.call(current_user, params[:id])
 
         if result.success
           render status: :no_content
@@ -62,7 +62,7 @@ module Api
       private
 
       def content_params
-        params.permit(:id, :content)
+        params.permit(:content)
       end
     end
   end

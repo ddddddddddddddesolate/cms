@@ -9,7 +9,7 @@ module Contents
     end
 
     def call
-      OpenStruct.new(contents: current_user.contents)
+      OpenStruct.new(contents: policy_scope(Content))
     end
   end
 end
