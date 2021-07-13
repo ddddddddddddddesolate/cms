@@ -5,6 +5,5 @@ class Event < ApplicationRecord
   has_many :displays, dependent: :destroy
   has_many :playlists, through: :displays, dependent: :destroy
 
-  validates :user, presence: true
   validates :name, presence: true, length: { maximum: 255 }
 end

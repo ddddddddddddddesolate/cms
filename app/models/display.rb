@@ -5,5 +5,4 @@ class Display < ApplicationRecord
   belongs_to :playlist, optional: true
 
   validates :name, presence: true, length: { maximum: 255 }
-  validates :event, presence: true
 end
