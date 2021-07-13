@@ -4,7 +4,7 @@ module Api
   module V1
     class ContentsController < AuthenticatedController
       def index
-        result = Contents::ShowContentsService.call
+        result = Contents::ShowContentsService.call(current_user)
 
         render json: {
                  data: ActiveModelSerializers::SerializableResource.new(result.contents, each_serializer: ContentSerializer),
