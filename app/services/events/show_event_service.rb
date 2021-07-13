@@ -10,7 +10,7 @@ module Events
     end
 
     def call
-      event = current_user.events.find_by!(@event_params)
+      event = current_user.events.find_by!(event_params)
 
       OpenStruct.new(event: event)
     end

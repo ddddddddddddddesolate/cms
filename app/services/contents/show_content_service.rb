@@ -10,7 +10,7 @@ module Contents
     end
 
     def call
-      content = current_user.contents.find_by!(@content_params)
+      content = current_user.contents.find_by!(content_params)
 
       OpenStruct.new(content: content)
     end
