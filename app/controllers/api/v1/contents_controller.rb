@@ -20,7 +20,7 @@ module Api
       end
 
       def create
-        result = Contents::CreateContentService.call(content_params)
+        result = Contents::CreateContentService.call(current_user, content_params)
 
         if result.success
           render json: {
