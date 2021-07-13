@@ -2,4 +2,5 @@
 
 class BaseService
   include Callable
+  include Pundit
 end
