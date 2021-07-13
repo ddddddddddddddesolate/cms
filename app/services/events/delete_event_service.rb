@@ -2,15 +2,16 @@
 
 module Events
   class DeleteEventService < BaseService
-    attr_reader :current_user, :event_params
+    attr_reader :current_user, :id
 
-    def initialize(current_user, event_params)
+    def initialize(current_user, id)
       @current_user = current_user
-      @event_params = event_params
+      @id = id
     end
 
     def call
-      event = current_user.events.find_by!(event_params)
+      event = Event.find(id)
+      authorize event, :destroy?
 
       event.destroy
 

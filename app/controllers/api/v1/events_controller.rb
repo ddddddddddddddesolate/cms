@@ -12,7 +12,7 @@ module Api
       end
 
       def show
-        result = Events::ShowEventService.call(current_user, event_params)
+        result = Events::ShowEventService.call(current_user, params[:id])
 
         render json: {
                  data: ActiveModelSerializers::SerializableResource.new(result.event, serializer: EventSerializer),
@@ -34,7 +34,7 @@ module Api
       end
 
       def update
-        result = Events::UpdateEventService.call(current_user, event_params)
+        result = Events::UpdateEventService.call(current_user, params[:id], event_params)
 
         if result.success
           render json: {
@@ -48,7 +48,7 @@ module Api
       end
 
       def destroy
-        result = Events::DeleteEventService.call(current_user, event_params)
+        result = Events::DeleteEventService.call(current_user, params[:id])
 
         if result.success
           render status: :no_content
@@ -62,7 +62,7 @@ module Api
       private
 
       def event_params
-        params.permit(:id, :name)
+        params.permit(:name)
       end
     end
   end

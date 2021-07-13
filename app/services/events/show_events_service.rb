@@ -9,7 +9,7 @@ module Events
     end
 
     def call
-      OpenStruct.new(events: current_user.events)
+      OpenStruct.new(events: policy_scope(Event))
     end
   end
 end
