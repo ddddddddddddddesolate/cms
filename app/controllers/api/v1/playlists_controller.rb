@@ -48,7 +48,7 @@ module Api
       end
 
       def destroy
-        result = Playlists::DeletePlaylistService.call(playlist_params)
+        result = Playlists::DeletePlaylistService.call(current_user, playlist_params)
 
         if result.success
           render status: :no_content
