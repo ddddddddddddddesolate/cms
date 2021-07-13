@@ -34,7 +34,7 @@ module Api
       end
 
       def update
-        result = Playlists::UpdatePlaylistService.call(playlist_params)
+        result = Playlists::UpdatePlaylistService.call(current_user, playlist_params)
 
         if result.success
           render json: {
