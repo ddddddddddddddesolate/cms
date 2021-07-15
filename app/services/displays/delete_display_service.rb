@@ -3,15 +3,19 @@
 module Displays
   # Delete display service
   class DeleteDisplayService < BaseService
-    attr_reader :display_params
+    attr_reader :event_id, :id
 
-    def initialize(current_user, display_params)
+    def initialize(current_user, event_id, id)
       super(current_user)
-      @display_params = display_params
+      @event_id = event_id
+      @id = id
     end
 
     def call
-      display = current_user.displays.find_by!(display_params)
+      event = Event.find(event_id)
+      authorize event, :use?
+
+      display = Display.find(id)
 
       display.destroy
 

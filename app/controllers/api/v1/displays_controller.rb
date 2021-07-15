@@ -5,7 +5,7 @@ module Api
     # Displays controller
     class DisplaysController < AuthenticatedController
       def index
-        result = Displays::ShowDisplaysService.call(current_user, display_params)
+        result = Displays::ShowDisplaysService.call(current_user, params[:event_id])
 
         render json: {
           data: ActiveModelSerializers::SerializableResource.new(result.displays, each_serializer: DisplaySerializer)
@@ -13,7 +13,7 @@ module Api
       end
 
       def show
-        result = Displays::ShowDisplayService.call(current_user, display_params)
+        result = Displays::ShowDisplayService.call(current_user, params[:event_id], params[:id])
 
         render json: {
           data: ActiveModelSerializers::SerializableResource.new(result.display, serializer: DisplaySerializer)
@@ -21,7 +21,7 @@ module Api
       end
 
       def create
-        result = Displays::CreateDisplayService.call(current_user, display_params)
+        result = Displays::CreateDisplayService.call(current_user, params[:event_id], display_params)
 
         if result.success
           render json: {
@@ -35,7 +35,7 @@ module Api
       end
 
       def update
-        result = Displays::UpdateDisplayService.call(current_user, display_params)
+        result = Displays::UpdateDisplayService.call(current_user, params[:event_id], params[:id], display_params)
 
         if result.success
           render json: {
@@ -49,7 +49,7 @@ module Api
       end
 
       def destroy
-        result = Displays::DeleteDisplayService.call(current_user, display_params)
+        result = Displays::DeleteDisplayService.call(current_user, params[:event_id], params[:id])
 
         if result.success
           render status: :no_content
@@ -63,7 +63,7 @@ module Api
       private
 
       def display_params
-        params.permit(:id, :name, :event_id, :playlist_id)
+        params.permit(:name, :playlist_id)
       end
     end
   end

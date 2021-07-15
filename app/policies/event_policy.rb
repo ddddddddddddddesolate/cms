@@ -2,6 +2,10 @@
 
 # Event policy
 class EventPolicy < ApplicationPolicy
+  def use?
+    record.user_id == user.id
+  end
+
   def show?
     record.user_id == user.id
   end
