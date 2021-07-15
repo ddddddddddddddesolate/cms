@@ -11,7 +11,9 @@ module Playlists
     end
 
     def call
-      playlist = current_user.playlists.new(playlist_params)
+      playlist = current_user.playlists
+                             .includes(:slides, :contents)
+                             .new(playlist_params)
 
       OpenStruct.new(success: playlist.save, errors: playlist.errors, playlist: playlist)
     end

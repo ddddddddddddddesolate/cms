@@ -13,12 +13,12 @@ module Displays
     end
 
     def call
-      event = Event.find(event_id)
-      authorize event, :use?
+      authorize Event.find(event_id), :use?
 
       authorize_playlist
 
-      display = Display.find(id)
+      display = Display.includes(playlist: %i[slides contents])
+                       .find_by(id: id, event_id: event_id)
 
       OpenStruct.new(success: display.update(display_params), errors: display.errors, display: display)
     end

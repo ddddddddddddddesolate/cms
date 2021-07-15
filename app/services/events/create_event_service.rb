@@ -11,7 +11,9 @@ module Events
     end
 
     def call
-      event = current_user.events.new(event_params)
+      event = current_user.events
+                          .includes(displays: [playlist: %i[slides contents]])
+                          .new(event_params)
 
       OpenStruct.new(success: event.save, errors: event.errors, event: event)
     end

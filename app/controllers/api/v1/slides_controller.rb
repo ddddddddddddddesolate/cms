@@ -21,7 +21,7 @@ module Api
       end
 
       def create
-        result = Slides::AddSlideService.call(current_user, slide_params)
+        result = Slides::CreateSlideService.call(current_user, slide_params)
 
         if result.success
           render json: {

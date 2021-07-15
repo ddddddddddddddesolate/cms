@@ -12,8 +12,10 @@ module Playlists
     end
 
     def call
-      playlist = Playlist.find(id)
-      authorize playlist, :update?
+      authorize Playlist.find(id), :update?
+
+      playlist = Playlist.includes(:slides, :contents)
+                         .find(id)
 
       OpenStruct.new(success: playlist.update(playlist_params), errors: playlist.errors, playlist: playlist)
     end

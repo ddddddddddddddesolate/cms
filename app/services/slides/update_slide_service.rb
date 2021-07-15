@@ -11,9 +11,10 @@ module Slides
     end
 
     def call
-      playlist = Playlist.find(slide_params[:playlist_id])
-      authorize playlist, :use?
-      slide = Slide.find_by!(slide_params.extract!(:id))
+      authorize Playlist.find(slide_params[:playlist_id]), :use?
+
+      slide = Slide.includes(:content)
+                   .find_by!(slide_params.extract!(:id))
 
       OpenStruct.new(success: slide.update(slide_params), errors: slide.errors, slide: slide)
     end

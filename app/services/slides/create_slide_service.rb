@@ -2,7 +2,7 @@
 
 module Slides
   # Add slide service
-  class AddSlideService < BaseService
+  class CreateSlideService < BaseService
     attr_reader :slide_params
 
     def initialize(current_user, slide_params)
@@ -11,11 +11,11 @@ module Slides
     end
 
     def call
-      playlist = Playlist.find(slide_params[:playlist_id])
-      authorize playlist, :use?
-      content = Content.find(slide_params[:content_id])
-      authorize content, :use?
-      slide = Slide.new(slide_params)
+      authorize Playlist.find(slide_params[:playlist_id]), :use?
+      authorize Content.find(slide_params[:content_id]), :use?
+
+      slide = Slide.includes(:content)
+                   .new(slide_params)
 
       OpenStruct.new(success: slide.save, errors: slide.errors, slide: slide)
     end
