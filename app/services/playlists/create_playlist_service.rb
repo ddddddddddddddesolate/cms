@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 module Playlists
+  # Create playlist service
   class CreatePlaylistService < BaseService
-    attr_reader :current_user, :playlist_params
+    attr_reader :playlist_params
 
     def initialize(current_user, playlist_params)
-      @current_user = current_user
+      super(current_user)
       @playlist_params = playlist_params
     end
 

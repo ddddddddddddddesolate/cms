@@ -2,21 +2,22 @@
 
 module Api
   module V1
+    # Displays controller
     class DisplaysController < AuthenticatedController
       def index
         result = Displays::ShowDisplaysService.call(current_user, display_params)
 
         render json: {
-                 data: ActiveModelSerializers::SerializableResource.new(result.displays, each_serializer: DisplaySerializer),
-               }, status: :ok
+          data: ActiveModelSerializers::SerializableResource.new(result.displays, each_serializer: DisplaySerializer)
+        }, status: :ok
       end
 
       def show
         result = Displays::ShowDisplayService.call(current_user, display_params)
 
         render json: {
-                 data: ActiveModelSerializers::SerializableResource.new(result.display, serializer: DisplaySerializer),
-               }, status: :ok
+          data: ActiveModelSerializers::SerializableResource.new(result.display, serializer: DisplaySerializer)
+        }, status: :ok
       end
 
       def create
@@ -24,12 +25,12 @@ module Api
 
         if result.success
           render json: {
-                   data: ActiveModelSerializers::SerializableResource.new(result.display, serializer: DisplaySerializer),
-                 }, status: :ok
+            data: ActiveModelSerializers::SerializableResource.new(result.display, serializer: DisplaySerializer)
+          }, status: :ok
         else
           render json: {
-                   errors: result.errors,
-                 }, status: :unprocessable_entity
+            errors: result.errors
+          }, status: :unprocessable_entity
         end
       end
 
@@ -38,12 +39,12 @@ module Api
 
         if result.success
           render json: {
-                   data: ActiveModelSerializers::SerializableResource.new(result.display, serializer: DisplaySerializer),
-                 }, status: :ok
+            data: ActiveModelSerializers::SerializableResource.new(result.display, serializer: DisplaySerializer)
+          }, status: :ok
         else
           render json: {
-                   errors: result.errors,
-                 }, status: :unprocessable_entity
+            errors: result.errors
+          }, status: :unprocessable_entity
         end
       end
 
@@ -54,8 +55,8 @@ module Api
           render status: :no_content
         else
           render json: {
-                   errors: result.errors,
-                 }, status: :unprocessable_entity
+            errors: result.errors
+          }, status: :unprocessable_entity
         end
       end
 

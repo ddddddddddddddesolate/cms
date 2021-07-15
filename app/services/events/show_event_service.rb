@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 module Events
+  # Show event service
   class ShowEventService < BaseService
-    attr_reader :current_user, :id
+    attr_reader :id
 
     def initialize(current_user, id)
-      @current_user = current_user
+      super(current_user)
       @id = id
     end
 

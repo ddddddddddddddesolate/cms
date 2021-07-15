@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 module Displays
+  # Show display service
   class ShowDisplayService < BaseService
-    attr_reader :current_user, :display_params
+    attr_reader :display_params
 
     def initialize(current_user, display_params)
-      @current_user = current_user
+      super(current_user)
       @display_params = display_params
     end
 

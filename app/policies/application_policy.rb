@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Base application policy
 class ApplicationPolicy
   attr_reader :user, :record
 
@@ -34,6 +37,7 @@ class ApplicationPolicy
     false
   end
 
+  # Application policy default scope
   class Scope
     attr_reader :user, :scope
 

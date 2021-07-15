@@ -1,16 +1,17 @@
 # frozen_string_literal: true
 
 module Playlists
+  # Delete playlist service
   class DeletePlaylistService < BaseService
-    attr_reader :current_user, :id
+    attr_reader :id
 
     def initialize(current_user, id)
-      @current_user = current_user
+      super(current_user)
       @id = id
     end
 
     def call
-      playlist = Playlist.find(ud)
+      playlist = Playlist.find(id)
       authorize playlist, :destroy?
 
       playlist.destroy

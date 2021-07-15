@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Content policy
 class ContentPolicy < ApplicationPolicy
   def use?
     record.user_id == user.id

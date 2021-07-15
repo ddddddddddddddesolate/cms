@@ -1,13 +1,8 @@
 # frozen_string_literal: true
 
 module Contents
+  # Show contents service
   class ShowContentsService < BaseService
-    attr_reader :current_user
-
-    def initialize(current_user)
-      @current_user = current_user
-    end
-
     def call
       OpenStruct.new(contents: policy_scope(Content))
     end

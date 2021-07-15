@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 
+# Serializer for event
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :name, :userId
+  attributes :id, :name
 
   has_many :displays
-
-  def userId
-    object.user_id
-  end
 end

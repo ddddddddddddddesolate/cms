@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Serializer for slide
 class SlideSerializer < ActiveModel::Serializer
   attributes :id, :weight
 

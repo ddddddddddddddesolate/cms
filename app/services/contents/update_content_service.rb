@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 module Contents
+  # Update content service
   class UpdateContentService < BaseService
-    attr_reader :current_user, :id, :content_params
+    attr_reader :id, :content_params
 
     def initialize(current_user, id, content_params)
-      @current_user = current_user
+      super(current_user)
       @id = id
       @content_params = content_params
     end

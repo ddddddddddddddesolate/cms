@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Playlist policy
 class PlaylistPolicy < ApplicationPolicy
   def use?
     record.user_id == user.id

@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 module Events
+  # Update event service
   class UpdateEventService < BaseService
-    attr_reader :current_user, :id, :event_params
+    attr_reader :id, :event_params
 
     def initialize(current_user, id, event_params)
-      @current_user = current_user
+      super(current_user)
       @id = id
       @event_params = event_params
     end

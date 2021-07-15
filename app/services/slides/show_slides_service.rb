@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 module Slides
+  # Show slides service
   class ShowSlidesService < BaseService
-    attr_reader :current_user, :slide_params
+    attr_reader :slide_params
 
     def initialize(current_user, slide_params)
-      @current_user = current_user
+      super(current_user)
       @slide_params = slide_params
     end
 

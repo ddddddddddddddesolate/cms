@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 module Playlists
+  # Update playlist service
   class UpdatePlaylistService < BaseService
-    attr_reader :current_user, :id, :playlist_params
+    attr_reader :id, :playlist_params
 
     def initialize(current_user, id, playlist_params)
-      @current_user = current_user
+      super(current_user)
       @id = id
       @playlist_params = playlist_params
     end

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Serializer for content
 class ContentSerializer < ActiveModel::Serializer
   attributes :id, :url
 
