@@ -1,28 +1,15 @@
 # frozen_string_literal: true
 
 class PlaylistPolicy < ApplicationPolicy
-  attr_reader :user, :playlist
-
-  def initialize(user, playlist)
-    @user = user
-    @playlist = playlist
+  def show?
+    record.user_id == user.id
   end
 
   def update?
-    playlist.user == user
-  end
-
-  def edit?
-    udpate?
+    record.user_id == user.id
   end
 
   def destroy?
-    playlist.user == user
-  end
-
-  class Scope < Scope
-    def resolve
-      scope.where(user: user)
-    end
+    record.user_id == user.id
   end
 end
