@@ -26,7 +26,7 @@ module Displays
     private
 
     def authorize_playlist
-      return unless display_params[:playlist_id]
+      return unless display_params[:playlist_id].present?
 
       playlist = Playlist.find(display_params[:playlist_id])
       authorize playlist, :use?
