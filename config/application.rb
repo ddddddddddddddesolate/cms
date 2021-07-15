@@ -39,5 +39,7 @@ module Cms
 
     config.autoload_paths << Rails.root.join("lib")
     config.autoload_paths << Rails.root.join("app/uploaders")
+
+    config.logger = Logger.new($stdout)
   end
 end
