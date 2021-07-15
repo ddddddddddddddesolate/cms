@@ -4,7 +4,7 @@ module Api
   module V1
     class SlidesController < AuthenticatedController
       def index
-        result = Slides::ShowSlidesService.call(slide_params)
+        result = Slides::ShowSlidesService.call(current_user, slide_params)
 
         render json: {
                  data: ActiveModelSerializers::SerializableResource.new(result.slides, each_serializer: SlideSerializer),
@@ -12,7 +12,7 @@ module Api
       end
 
       def show
-        result = Slides::ShowSlideService.call(slide_params)
+        result = Slides::ShowSlideService.call(current_user, slide_params)
 
         render json: {
                  data: ActiveModelSerializers::SerializableResource.new(result.slide, serializer: SlideSerializer),
@@ -20,7 +20,7 @@ module Api
       end
 
       def create
-        result = Slides::AddSlideService.call(slide_params)
+        result = Slides::AddSlideService.call(current_user, slide_params)
 
         if result.success
           render json: {
@@ -34,7 +34,7 @@ module Api
       end
 
       def update
-        result = Slides::UpdateSlideService.call(slide_params)
+        result = Slides::UpdateSlideService.call(current_user, slide_params)
 
         if result.success
           render json: {
@@ -48,7 +48,7 @@ module Api
       end
 
       def destroy
-        result = Slides::DeleteSlideService.call(slide_params)
+        result = Slides::DeleteSlideService.call(current_user, slide_params)
 
         if result.success
           render status: :no_content
