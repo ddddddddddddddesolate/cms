@@ -26,6 +26,7 @@ gem "carrierwave-aws"
 gem "devise"
 gem "devise_token_auth"
 gem "pundit"
+gem "rubocop"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
