@@ -12,7 +12,8 @@ module Displays
     end
 
     def call
-      authorize Event.find(event_id), :use?
+      event = Event.find(event_id)
+      authorize event, :use?
 
       display = Display.includes(playlist: %i[slides contents])
                        .find_by(id: id, event_id: event_id)

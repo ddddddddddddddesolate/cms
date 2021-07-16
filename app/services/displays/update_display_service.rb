@@ -13,7 +13,8 @@ module Displays
     end
 
     def call
-      authorize Event.find(event_id), :use?
+      event = Event.find(event_id)
+      authorize event, :use?
 
       authorize_playlist
 

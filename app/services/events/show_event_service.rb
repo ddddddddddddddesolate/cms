@@ -11,8 +11,9 @@ module Events
     end
 
     def call
-      authorize Event.find(id), :show?
-      event = Event.includes(displays: [playlist: %i[slides contents]]).find(id)
+      event = Event.includes(displays: [playlist: %i[slides contents]])
+                   .find(id)
+      authorize event, :show?
 
       OpenStruct.new(event: event)
     end

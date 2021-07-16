@@ -11,8 +11,10 @@ module Slides
     end
 
     def call
-      authorize Playlist.find(slide_params[:playlist_id]), :use?
-      authorize Content.find(slide_params[:content_id]), :use?
+      playlist = Playlist.find(slide_params[:playlist_id])
+      authorize playlist, :use?
+      content = Content.find(slide_params[:content_id])
+      authorize content, :use?
 
       slide = Slide.includes(:content)
                    .new(slide_params)
